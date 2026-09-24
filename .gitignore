@@ -25,3 +25,6 @@ dist-ssr
 
 # Disalin otomatis dari node_modules
 public/mediapipe
+
+# Konfigurasi lokal claude code 
+.claude/
