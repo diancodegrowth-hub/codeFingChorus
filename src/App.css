@@ -1,0 +1,260 @@
+.app {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 20px 16px 32px;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+}
+.topbar h1 span {
+  color: var(--accent);
+}
+.topbar p {
+  margin: 4px 0 18px;
+  color: var(--muted);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Panggung kamera ---------- */
+.stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.stage video,
+.stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Dicerminkan supaya terasa seperti cermin: angkat tangan kanan → muncul di kanan layar. */
+.mirror {
+  transform: scaleX(-1);
+}
+
+.stage-cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  text-align: center;
+  background: rgba(15, 13, 20, 0.85);
+}
+.start {
+  padding: 14px 26px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #1a1305;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.start:hover {
+  transform: scale(1.04);
+}
+.error {
+  color: var(--danger);
+  max-width: 420px;
+}
+
+.now-playing {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 22px;
+  border-radius: 14px;
+  background: rgba(15, 13, 20, 0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.now-playing.on {
+  border-color: var(--accent);
+  box-shadow: 0 0 28px rgba(245, 184, 65, 0.35);
+}
+.now-playing .roman {
+  color: var(--muted);
+  font-weight: 600;
+}
+.now-playing .name {
+  font-size: 40px;
+  font-weight: 800;
+}
+.now-playing .silent {
+  color: var(--muted);
+}
+
+/* ---------- Panel samping ---------- */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+}
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-head h2 {
+  margin: 0;
+}
+.card select {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+.card p {
+  margin: 6px 0 0;
+}
+
+.big-chord {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.sound-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.sound-row select {
+  flex: 1;
+  min-width: 0;
+}
+.test-sound {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+}
+.test-sound:hover {
+  border-color: var(--accent);
+}
+
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 13px;
+}
+
+.finger-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 34px;
+}
+.finger-title {
+  width: 48px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.finger-dots {
+  display: flex;
+  gap: 6px;
+}
+.dot {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.dot.on {
+  background: var(--c);
+  border-color: var(--c);
+  color: #111;
+}
+.toggle {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.chord-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.chord-table td {
+  padding: 6px 6px;
+  border-top: 1px solid var(--border);
+}
+.chord-table .roman {
+  width: 36px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.chord-table .chord-name {
+  width: 64px;
+  font-weight: 700;
+}
+.chord-table .hint {
+  color: var(--muted);
+  font-size: 13px;
+}
+.chord-table tr.active td {
+  background: rgba(245, 184, 65, 0.14);
+  color: var(--text);
+}
+.chord-table tr.active .chord-name {
+  color: var(--accent);
+}
